@@ -1,13 +1,13 @@
 {
   "$schema": "https://mintlify.com/docs.json",
-  "theme": "mint",
-  "name": "Mint Starter Kit",
+  "theme": "willow",
+  "name": "Valence AI Documentation",
   "colors": {
     "primary": "#16A34A",
     "light": "#07C983",
     "dark": "#15803D"
   },
-  "favicon": "/gradient_logo_only.svg",
+  "favicon": "/logo/gradient_logo_only.svg",
   "navigation": {
     "tabs": [
       {
@@ -16,16 +16,16 @@
           {
             "group": "Get Started",
             "pages": [
+              "welcome",
               "introduction",
-              "intro",
-              "installation"
+              "quickstart"
             ]
           },
           {
             "group": "SDK",
             "pages": [
               "SDK/python",
-              "SDK/node"
+              "SDK/javascript"
             ]
           }
         ]
