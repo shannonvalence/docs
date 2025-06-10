@@ -55,24 +55,24 @@
       "anchors": [
         {
           "anchor": "Website",
-          "href": "https://mintlify.com/docs",
+          "href": "https://getvalenceai.com",
           "icon": "book-open-cover"
         },
         {
           "anchor": "Demo",
-          "href": "https://mintlify.com/community",
+          "href": "https://calendly.com/chloe-duckworth/demo",
           "icon": "slack"
         },
         {
           "anchor": "Support",
-          "href": "https://mintlify.com/blog",
+          "href": "mailto:support@valencevibrations.com",
           "icon": "newspaper"
         }
       ]
     }
   },
   "logo": {
-    "light": "/logo/ValeceGradientHorizontalLogo.png",
+    "light": "/logo/ValenceGradientHorizontalLogo.png",
     "dark": "/logo/ValenceWhiteHorizontalLogo.png"
   },
   "navbar": {
