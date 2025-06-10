@@ -56,17 +56,17 @@
         {
           "anchor": "Website",
           "href": "https://getvalenceai.com",
-          "icon": "book-open-cover"
+          "icon": "globe-pointer"
         },
         {
           "anchor": "Demo",
           "href": "https://calendly.com/chloe-duckworth/demo",
-          "icon": "slack"
+          "icon": "circle-video"
         },
         {
           "anchor": "Support",
           "href": "mailto:support@valencevibrations.com",
-          "icon": "newspaper"
+          "icon": "screwdriver-wrench"
         }
       ]
     }
