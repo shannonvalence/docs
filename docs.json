@@ -3,9 +3,9 @@
   "theme": "mint",
   "name": "Valence AI Documentation",
   "colors": {
-    "primary": "#16A34A",
-    "light": "#07C983",
-    "dark": "#78E3DE"
+    "primary": "#0812c9",
+    "light": "#2FB0D3",
+    "dark": "#4900A6"
   },
   "favicon": "/logo/gradient_logo_only.svg",
   "navigation": {
