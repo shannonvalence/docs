@@ -1,4 +1,40 @@
 ---
 title: "Introduction"
-description: "Valence’s Pulse API offers real-time emotion classification of audio data using our proprietary machine learning models. This document provides detailed instructions on how to use the API, including data specifications and example scripts for making requests"
+description: "Valence’s Pulse API offers real-time emotion classification of audio data using our proprietary machine learning models. Below are additional details of capabilities and data specifications."
 ---
+
+### Feature Overview
+
+The emotional classification model used in our APIs is optimized for North American English conversational data.
+
+The API includes a baseline model of 4 basic emotions. The emotions included by default are angry, happy, neutral, and sad. Our other model offerings include different subsets of the following emotions: happy, sad, angry, neutral, surprised, disgusted, nervous, irritated, excited, sleepy. 
+
+<Note>
+  _Coming soon_ – The API will include a model choice parameter, allowing users to choose between models of 4, 5, and 7 emotions.
+</Note>
+
+The number of emotions, emotional buckets, and language support can be customized. If you are interested in a custom model, please [<u>contact us</u>](https://www.valencevibrations.com/contact).
+
+### Which API to Use
+
+While our APIs include the same model offerings in the backend, they are suited for different purposes. 
+
+|               | DiscreteAPI                                                                                                                                                                     | AsyncAPI                                                                                                                          |
+| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| Inputs        | A short audio file, 4-10s in length.                                                                                                                                            | A long audio file, at least 5s in length. Inputs can be up to 1 GB large.                                                         |
+| Outputs       | A JSON that includes the primary emotion detected in the file, along with its confidence. Optionally, the confidence scores of all other emotions in the model can be returned. | A time-stamped JSON that includes the classified emotion and its confidence at a rate of 1 classification per 5 seconds of audio. |
+| Response Time | 100-500 ms                                                                                                                                                                      | Dependent upon file size                                                                                                          |
+
+The **DiscreteAPI** is built for real-time analysis of emotions in audio data. Small snippets of audio are sent to the API to receive feedback in real-time of what emotions are detected based on tone of voice. This API operates on an approximate per-sentence basis, and audio must be cut to the appropriate size. 
+
+The **AsyncAPI **is built for emotion analysis of pre-recorded audio files. Files of any length, up to 1 GB in size, can be sent to the API to receive a summary of emotions throughout the file. Similar to the DiscreteAPI, this API operates on an approximate per-sentence basis, but the AsyncAPI provides timestamps to show the change in emotions over time.
+
+### Ideal Inputs
+
+The APIs expect mono audio in the .wav format. An ideal audio file is recorded at 44100 Hz (44.1 kHz), though sampling rates as low as 8 kHz can still be used with high accuracy. For custom use cases, microphone specifications can be customized based on audio environment, including optimizations for mono/stereo audio, single microphone applications, noisy environments, etc. 
+
+For the**DiscreteAPI** , there are two input data formatting options: a raw audio file [multipart/form-data] or a processed audio file [application/json]. Requests sent using the raw audio file will have reduced latencies. JSON input can only be sent via Python, as there are specific data processing requirements.
+
+For the **AsyncAPI**, the only input data option is an audio file, in the .wav format. 
+
+Outputs
