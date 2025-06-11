@@ -40,12 +40,21 @@
             ]
           },
           {
-            "group": "Endpoint Examples",
+            "group": "HTTPS Examples",
             "pages": [
-              "api-reference/endpoint/get",
-              "api-reference/endpoint/create",
-              "api-reference/endpoint/delete",
-              "api-reference/endpoint/webhook"
+              "api-reference/api/get",
+              "api-reference/api/create",
+              "api-reference/api/delete",
+              "api-reference/api/webhook"
+            ]
+          },
+          {
+            "group": "SDK Endpoints",
+            "pages": [
+              "api-reference/sdk/get",
+              "api-reference/sdk/create",
+              "api-reference/sdk/delete",
+              "api-reference/sdk/webhook"
             ]
           }
         ]
