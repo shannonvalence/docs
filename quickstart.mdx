@@ -1,4 +1,163 @@
 ---
 title: "Quickstart"
-description: "Get to testing the API quickly! Below is an example of direct usage of our DiscreteAPI for real-time emotion analysis. "
+description: "Get to testing the API quickly! This guide will walk you through direct usage of our DiscreteAPI for real-time emotion analysis and our AsyncAPI for emotion analysis of pre-recorded files."
 ---
+
+### Prerequisites
+
+- A valid [API key](https://calendly.com/chloe-duckworth/demo)
+- Endpoint URL for Pulse API
+- Python 3.7\+ OR JavaScript
+
+Valence provides Python and JavaScript SDKs, though you can also make direct HTTPS requests to the DiscreteAPI. The AsyncAPI can only be accessed through the SDK.
+
+### DiscreteAPI Examples
+
+Below are two examples of direct usage of our DiscreteAPI. There are two data input options: `[multipart/form-data]` and `[application/json]` . `[multipart/form-data]` allows a user to directly upload an audio file and `[application/json]` allows a user to process their data before sending it to the API.
+
+**File upload**
+
+<CodeGroup>
+
+```python Python [expandable]
+import requests
+
+# Define the API endpoint and the API key
+API_LINK = 'api.getvalenceai.com'
+API_KEY = 'YOUR_API_KEY'
+
+# Define the file path to upload
+file_path = "YOUR_FILE"
+
+# Open the file in binary mode
+with open(file_path, 'rb') as file:
+    # Prepare the files parameter with the file object
+    files = {
+		'file': file
+	}
+    # Prepare the headers with the API key
+    headers = {
+	'x-api-key': API_KEY
+	}
+    # Make the POST request to upload the file
+    response = requests.post(API_LINK, files=files, headers=headers)
+    
+    # Check the response status
+    if response.status_code == 200:
+        print("Response:", response.json())
+    else:
+        print(f"Failed to upload file, {response.status_code}, {response.text}")
+```
+
+
+```javascript JavaScript [expandable]
+const axios = require('axios');
+const fs = require('fs');
+
+// Define the API endpoint and the API key
+const API_LINK = 'https://api.getvalenceai.com';
+const API_KEY = 'YOUR_API_KEY';
+
+// Define the file path to upload
+const filePath = "YOUR_FILE";
+
+// Open the file and prepare the request
+const file = fs.createReadStream(filePath);
+const formData = new FormData();
+formData.append('file', file);
+
+// Prepare the headers with the API key
+const headers = {
+    'x-api-key': API_KEY,
+    ...formData.getHeaders()
+};
+
+// Make the POST request to upload the file
+axios.post(API_LINK, formData, { headers })
+    .then(response => {
+        console.log("Response:", response.data);
+    })
+    .catch(error => {
+        console.error(`Failed to upload file, ${error.response.status}, ${error.response.data}`);
+    });
+```
+
+
+```bash cURL [expandable]
+#!/bin/sh
+export API_LINK='api.getvalenceai.com'
+export API_KEY='YOUR_API_KEY'
+curl -X POST "$API_LINK" \
+     -H "x-api-key: $API_KEY" \
+     -H "Content-Type: multipart/form-data" \
+     -F "file=@YOUR_FILE.wav"
+```
+
+</CodeGroup>
+
+**Send processed data**
+
+```python
+import requests
+import librosa
+import json
+import numpy as np
+
+API_LINK = 'api.getvalenceai.com'
+API_KEY = 'YOUR_API_KEY'
+
+headers = {
+    'Content-Type': 'application/json',
+    'x-api-key': API_KEY
+}
+
+fp = 'YOUR_FILE.wav'
+X, sample_rate = librosa.load(fp, sr=44100, duration=4.5, offset=0.5)
+event = {'payload': [X[:198450].tolist()]}
+jevent = json.dumps(event)
+
+response = requests.post(API_LINK, json=jevent, headers=headers)
+print(response.status_code)
+print(response.headers)
+print(response.json())
+```
+
+All data sent to the DiscreteAPI is data-in-transit. It is not stored on Valence's systems.
+
+### AsyncAPI Examples
+
+Below are examples of usage for our AsyncAPI. This API has to be used in conjunction with the SDK and requires direct file upload. 
+
+<CodeGroup>
+
+```python Python SDK [expandable]
+from valence-sdk import AsyncAPI
+
+client = AsyncAPI(show_progress=True)
+request_id = client.upload_file("YOUR_FILE.wav")
+
+# Polling prediction
+result = client.get_emotions(request_id)
+print(result)
+```
+
+
+```javascript JavaScript SDK [expandable]
+import { uploadAsyncAudio, getEmotions } from 'valence-sdk';
+
+try {
+  // Upload the audio file
+  const requestId = await uploadAsyncAudio('YOUR_FILE.wav');
+  console.log('Upload complete. Request ID:', requestId);
+  
+  // Poll for results
+  const emotions = await getEmotions(requestId);
+  console.log('Emotions detected:', emotions);
+} catch (error) {
+  console.error('Error:', error.message);
+}
+```
+
+</CodeGroup>
+
+All files sent to the AsyncAPI are briefly saved on Valence's systems while being processed. Our database is cleared every 24 hours. More information on data privacy can be found [here](https://www.getvalenceai.com/dpa).
