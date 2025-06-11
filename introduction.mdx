@@ -15,9 +15,9 @@ The API includes a baseline model of 4 basic emotions. The emotions included by 
 
 The number of emotions, emotional buckets, and language support can be customized. If you are interested in a custom model, please [<u>contact us</u>](https://www.valencevibrations.com/contact).
 
-### Which API to Use
+### Choosing an API
 
-While our APIs include the same model offerings in the backend, they are suited for different purposes.
+While our APIs include the same model offerings in the backend, they are best suited for different purposes.
 
 |               | DiscreteAPI                                                                                                                                                                     | AsyncAPI                                                                                                                          |
 | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
@@ -27,7 +27,11 @@ While our APIs include the same model offerings in the backend, they are suited 
 
 The **DiscreteAPI** is built for real-time analysis of emotions in audio data. Small snippets of audio are sent to the API to receive feedback in real-time of what emotions are detected based on tone of voice. This API operates on an approximate per-sentence basis, and audio must be cut to the appropriate size.
 
-The \*\*AsyncAPI\*\* is built for emotion analysis of pre-recorded audio files. Files of any length, up to 1 GB in size, can be sent to the API to receive a summary of emotions throughout the file. Similar to the DiscreteAPI, this API operates on an approximate per-sentence basis, but the AsyncAPI provides timestamps to show the change in emotions over time.
+The **AsyncAPI** is built for emotion analysis of pre-recorded audio files. Files of any length, up to 1 GB in size, can be sent to the API to receive a summary of emotions throughout the file. Similar to the DiscreteAPI, this API operates on an approximate per-sentence basis, but the AsyncAPI provides timestamps to show the change in emotions over time.
+
+<Note>
+  _Coming soon_ –  StreamingAPI via WebSockets for real-time analysis of an audio stream.
+</Note>
 
 ### Ideal Inputs
 
@@ -38,8 +42,65 @@ For the **DiscreteAPI**, there are two input data formatting options:
 - raw audio file `[multipart/form-data] `
 - processed audio file `[application/json]`
 
-Requests sent using the raw audio file will have reduced latencies. JSON input can only be sent via Python, as there are specific data processing requirements.
+Requests sent using the raw audio file will have reduced latencies. JSON input can only be sent from Python environments, as there are specific data processing requirements. These requirements are outlined in Quickstart and the API Reference. 
 
 For the **AsyncAPI**, the only input data option is an audio file, in the .wav format.
 
-Outputs
+### Outputs
+
+Outputs are returned as JSONs in the following formats: 
+
+**DiscreteAPI:**
+
+```json
+{
+'main_emotion': 
+	'happy', 'confidence': 0.777777777,
+'all_predictions': {
+	'angry': 0.123456789, 
+	'happy': 0.777777777, 
+	'neutral': 0.234567890, 
+	'sad': 0.098765432
+	}
+}
+```
+
+The emotion returned in `main_emotion` is the highest confidence emotion returned from the model. Within `all_predictions`, each emotion is followed by its level of confidence. Some may use the top two highest confidence emotions to generate more nuanced states. We recommend dropping a `main_emotion` with confidence under 0.38, but that is at the user's discretion. 
+
+**AsyncAPI: **
+
+```json
+{
+	'request_id': '27a33189-bdd7-47ca-9817-abacfb7bdaf3', 
+	'status': 'completed', 
+	'emotions': [
+		{
+			't': '00:00', 
+			'emotion': 'neutral', 
+			'confidence': 0.827917230
+		},
+		{
+			't': '00:05', 
+			'emotion': 'neutral', 
+			'confidence': 0.719817432
+		},
+		{
+			't': '00:10', 
+			'emotion': 'happy', 
+			'confidence': 0.917309381
+		}
+		{
+			't': '00:15', 
+			'emotion': 'neutral', 
+			'confidence': 0.414097846
+		}
+		...
+	]
+}
+```
+
+The emotions returned in `emotions` are the highest confidence emotion returned from the model, alongside the timestamp and confidence. The number of values in `emotions` correlates directly to the length of the input file. We recommend dropping `emotions` with confidence under 0.38, but that is at the user's discretion.
+
+<Check>
+  Looking for a different interval of timestamps? The customizability of audio length is in beta and will be released soon. 
+</Check>
