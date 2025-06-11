@@ -83,7 +83,7 @@ axios.post(API_LINK, formData, { headers })
 ```
 
 
-```bash cURL [expandable]
+```bash cURL
 #!/bin/sh
 export API_LINK='api.getvalenceai.com'
 export API_KEY='YOUR_API_KEY'
@@ -97,7 +97,7 @@ curl -X POST "$API_LINK" \
 
 **Send processed data**
 
-```python
+```python [expandable]
 import requests
 import librosa
 import json
@@ -130,7 +130,7 @@ Below are examples of usage for our AsyncAPI. This API has to be used in conjunc
 
 <CodeGroup>
 
-```python Python SDK [expandable]
+```python Python SDK
 from valence-sdk import AsyncAPI
 
 client = AsyncAPI(show_progress=True)
