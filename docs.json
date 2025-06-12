@@ -10,7 +10,7 @@
   "favicon": "/images/FaviconCropped.png",
   "api": {
     "mdx": {
-      "server": "https://getvalenceai.com/api",
+      "server": "https://api.getvalenceai.com/",
       "auth": {
         "method": "key",
         "name": "x-api-key" 
