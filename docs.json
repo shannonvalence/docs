@@ -43,7 +43,7 @@
             "group": "HTTPS Examples",
             "openapi": {
               "source": "api-reference/openapi.json",
-              "directory": "api-reference"
+              "directory": "api-reference/api"
             },
             "pages": [
               "api-reference/api/get",
