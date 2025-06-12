@@ -23,7 +23,7 @@
   "navigation": {
     "tabs": [
       {
-        "tab": "Guides",
+        "tab": "Developer Guide",
         "groups": [
           {
             "group": "Get Started",
@@ -53,7 +53,7 @@
             ]
           },
           {
-            "group": "HTTP Examples",
+            "group": "HTTP Endpoint",
             "pages": [
               "api-reference/api/post"
             ]
