@@ -1,4 +1,16 @@
 ---
 title: "Upload a short file and receive the classified emotion"
 api: "POST /emotionprediction"
+description: "For real-time emotion classification of short files, the file's classified emotion is returned."
 ---
+
+### Parameters
+
+- **Parameters:**
+  - `filePath` (string): Path to the audio file
+
+### Response
+
+**Returns:** `prediction [string]` - Emotion prediction results
+
+**Throws:** Error if file doesn't exist, API key missing, or request fails
