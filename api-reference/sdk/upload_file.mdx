@@ -1,4 +1,17 @@
 ---
-title: 'Upload your file for emotion processing'
-api: 'PUT https://sdk.getvalenceai.com/upload_file'
+title: "Upload your file for emotion processing"
+api: "PUT https://sdk.getvalenceai.com/upload_file"
+description: "Send a file to Valence's system for emotional classification."
 ---
+
+### Parameters
+
+- `filePath` (string): Path to the audio file
+- `partSize` (number, optional): Size of each part in bytes (default: 5MB, range: 1MB-100MB)
+- `maxRetries` (number, optional): Maximum retry attempts (default: 3)
+
+### Response
+
+**Returns:** `RequestID [string]` - Request ID for tracking the upload
+
+**Throws:** Error if file doesn't exist, API key missing, or upload fails

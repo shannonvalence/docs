@@ -1,6 +1,17 @@
 ---
 title: "Receive the results of your emotion processing"
 api: "Get https://sdk.getvalenceai.com/get_emotions"
+description: "After uploading your audio file via upload_file, get the results of your file's emotion classification."
 ---
 
-adding extra text here for checking
+### Parameters
+
+- `requestId` (string): Request ID from `uploadAsyncAudio`
+- `maxTries` (number, optional): Maximum polling attempts (default: 20, range: 1-100)
+- `intervalMs` (number, optional): Polling interval in milliseconds (default: 5000, range: 1000-60000)
+
+### Response
+
+**Returns:** `JSON` - Emotion prediction results
+
+**Throws:** Error if request_id is invalid or prediction times out
