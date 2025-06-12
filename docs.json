@@ -41,6 +41,10 @@
           },
           {
             "group": "HTTPS Examples",
+            "openapi": {
+              "source": "openapi.json",
+              "directory": "api-reference"
+            },
             "pages": [
               "api-reference/api/get",
               "api-reference/api/create",
