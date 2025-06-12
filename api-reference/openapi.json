@@ -11,7 +11,7 @@
     }
   ],
   "paths": {
-    "/predict-discrete": {
+    "/emotionprediction": {
       "post": {
         "summary": "Predict emotion from a short audio clip",
         "description": "Submit a short audio file and API key to receive an emotion prediction.",
