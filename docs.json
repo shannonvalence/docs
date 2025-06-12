@@ -51,7 +51,7 @@
           {
             "group": "HTTP Examples",
             "pages": [
-              "api-reference/api/create"
+              "api-reference/api/post"
             ]
           },
           {
