@@ -3,3 +3,95 @@ title: "JavaScript Installation"
 description: "Get our SDK up and running in your Javascript environment"
 ---
 
+### Requirements
+
+As best practice, it is recommended to set up your environment variables. Create a `.env` file in your project root and add the following:
+
+```bash
+VALENCE_API_KEY=your_api_key                # Required: Your Valence API key
+VALENCE_SHORT_URL=https://api.getvalenceai.com 
+VALENCE_LONG_URL=https://sdk.getvalenceai.com      
+VALENCE_LOG_LEVEL=info                      # Optional: debug, info, warn, error
+```
+
+Your Valence API Key is required, while while all other fields are optional.
+
+### Usage
+
+Install the package via `npm`.
+
+```bash
+npm install valence-sdk
+```
+
+You can validate the package configuration using the following code:
+
+```javascript
+import { validateConfig } from 'valence-sdk';
+
+try {
+  validateConfig();
+  console.log('Configuration is valid!');
+} catch (error) {
+  console.error('Configuration error:', error.message);
+}
+```
+
+**DiscreteAPI:**
+
+```javascript
+import { predictDiscreteAudioEmotion } from 'valence-sdk';
+
+try {
+  const result = await predictDiscreteAudioEmotion('YOUR_FILE.wav');
+  console.log('Emotions detected:', result);
+} catch (error) {
+  console.error('Error:', error.message);
+}
+```
+
+**AsyncAPI:**
+
+```python
+import { uploadAsyncAudio, getEmotions } from 'valence-sdk';
+
+try {
+  // Upload the audio file
+  const requestId = await uploadAsyncAudio('YOUR_FILE.wav');
+  console.log('Upload complete. Request ID:', requestId);
+  
+  // Poll for results
+  const emotions = await getEmotions(requestId);
+  console.log('Emotions detected:', emotions);
+} catch (error) {
+  console.error('Error:', error.message);
+}
+```
+
+**Advanced AsyncAPI Usage:**
+
+This usage is only recommended if you receive errors during file uploads.
+
+```javascript
+import { uploadAsyncAudio, getEmotions } from 'valence-sdk';
+
+// Custom upload with smaller parts and retries
+const requestId = await uploadAsyncAudio(
+  'YOUR_LARGE_FILE.wav',
+  2 * 1024 * 1024,  // 2MB parts
+  5                  // 5 retry attempts
+);
+
+// Custom polling with more attempts and shorter intervals
+const emotions = await getEmotions(
+  requestId,
+  50,    // 50 polling attempts
+  3000   // 3 second intervals
+);
+```
+
+More information about additional parameters and expected values can be found in the [API Reference](/api-reference/SDK_flags).
+
+<Card title="Ready to Get Started?" icon="rectangle-code" href="https://www.npmjs.com/package/valence-sdk?activeTab=readme">
+  Check out the Valence package on NPM →
+</Card>

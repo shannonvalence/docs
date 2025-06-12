@@ -2,3 +2,55 @@
 title: "Python Installation"
 description: "Get our SDK up and running in your Python environment"
 ---
+
+### Requirements
+
+Python 3.8\+ is required to ensure proper functionality of all necessary libraries.
+
+As best practice, it is recommended to set up your environment variables as such:
+
+```bash
+export VALENCE_API_KEY="YOUR_API_KEY" # Required
+export VALENCE_SHORT_URL="https://api.getvalenceai.com"
+export VALENCE_LONG_URL="https://sdk.getvalenceai.com"
+export VALENCE_LOG_LEVEL="DEBUG"  # Optional: INFO, DEBUG, ERROR
+```
+
+Your Valence API Key is required, while while all other fields are optional.
+
+### Usage
+
+Install the package via `pip`.
+
+```bash
+pip install valence-sdk
+```
+
+**DiscreteAPI:**
+
+```python
+from valence_sdk import DiscreteAPI
+
+client = DiscreteAPI()
+result = client.predict_emotion("YOUR_FILE.wav")
+print(result)
+```
+
+**AsyncAPI:**
+
+```python
+from valence_sdk import AsyncAPI
+
+client = AsyncAPI(show_progress=True)
+request_id = client.upload_file("YOUR_FILE.wav")
+
+# Polling prediction
+result = client.get_emotions(request_id)
+print(result)
+```
+
+More information about additional parameters and expected values can be found in the [API Reference](/api-reference/SDK_flags).
+
+<Card title="Ready to Get Started?" icon="rectangle-code" href="https://test.pypi.org/project/valence-sdk/0.2.0/">
+  Check out the Valence package on PyPI →
+</Card>
