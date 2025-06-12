@@ -8,6 +8,15 @@
     "dark": "#4900A6"
   },
   "favicon": "/images/FaviconCropped.png",
+  "api": {
+    "mdx": {
+      "server": "https://getvalenceai.com/api",
+      "auth": {
+        "method": "key",
+        "name": "x-api-key" 
+    }
+  }
+},
   "navigation": {
     "tabs": [
       {
@@ -46,19 +55,14 @@
               "directory": "api"
             },
             "pages": [
-              "api-reference/api/get",
-              "api-reference/api/create",
-              "api-reference/api/delete",
-              "api-reference/api/webhook"
+              "api-reference/api/create"
             ]
           },
           {
             "group": "SDK Endpoints",
             "pages": [
-              "api-reference/sdk/get",
-              "api-reference/sdk/create",
-              "api-reference/sdk/delete",
-              "api-reference/sdk/webhook"
+              "api-reference/sdk/get_emotions",
+              "api-reference/sdk/upload_file"
             ]
           }
         ]
