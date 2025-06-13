@@ -20,6 +20,17 @@
     "display": "none"
   }
 },
+  
+  "openapi": {
+    "spec": "./openapi.json" 
+  },
+    "sidebar": [
+    {
+      "section": "Reference",
+      "pages": ["api-reference/sdk/SDK_flags"]
+    }
+  ],
+  
   "navigation": {
     "tabs": [
       {
