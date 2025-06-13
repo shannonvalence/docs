@@ -1,14 +1,13 @@
 ---
 title: Predict Discrete Emotion
+type: reference
 method: POST
 url: /predict-discrete
 ---
 
-## Overview
+## Predict Discrete Emotion
 
 Use this endpoint to analyze a short audio clip and return a predicted emotion with a confidence score.
-
-This is part of the public HTTP API and can be accessed by sending a `multipart/form-data` POST request.
 
 ---
 
@@ -17,18 +16,17 @@ This is part of the public HTTP API and can be accessed by sending a `multipart/
 **POST** `/predict-discrete`
 
 ### Headers
+
 | Name        | Type   | Required | Description              |
 |-------------|--------|----------|--------------------------|
-| `api_key`   | string | ✅ Yes   | Your API key in header or form field |
+| `api_key`   | string | ✅ Yes   | Your API key (can be in header or form field) |
 
-### Body Parameters
-
-This endpoint accepts a `multipart/form-data` payload.
+### Form Data
 
 | Field      | Type     | Required | Description                        |
 |------------|----------|----------|------------------------------------|
-| `file`     | file     | ✅ Yes   | The audio file (.wav, .mp3, etc.)  |
-| `api_key`  | string   | ✅ Yes   | (If not in headers)                |
+| `file`     | file     | ✅ Yes   | Audio file (.wav, .mp3)            |
+| `api_key`  | string   | ✅ Yes   | API key (if not sent in header)    |
 
 ---
 
