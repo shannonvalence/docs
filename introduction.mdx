@@ -19,11 +19,12 @@ The number of emotions, emotional buckets, and language support can be customize
 
 While our APIs include the same model offerings in the backend, they are best suited for different purposes.
 
-|               | DiscreteAPI                                                                                                                                                                     | AsyncAPI                                                                                                                          |
-| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
-| Inputs        | A short audio file, 4-10s in length.                                                                                                                                            | A long audio file, at least 5s in length. Inputs can be up to 1 GB large.                                                         |
-| Outputs       | A JSON that includes the primary emotion detected in the file, along with its confidence. Optionally, the confidence scores of all other emotions in the model can be returned. | A time-stamped JSON that includes the classified emotion and its confidence at a rate of 1 classification per 5 seconds of audio. |
-| Response Time | 100-500 ms                                                                                                                                                                      | Dependent upon file size                                                                                                          |
+|                        | DiscreteAPI                                                                                                                                                                     | AsyncAPI                                                                                                                          |
+| ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| Inputs                 | A short audio file, 4-10s in length.                                                                                                                                            | A long audio file, at least 5s in length. Inputs can be up to 1 GB large.                                                         |
+| Outputs                | A JSON that includes the primary emotion detected in the file, along with its confidence. Optionally, the confidence scores of all other emotions in the model can be returned. | A time-stamped JSON that includes the classified emotion and its confidence at a rate of 1 classification per 5 seconds of audio. |
+| Response Time          | 100-500 ms                                                                                                                                                                      | Dependent upon file size                                                                                                          |
+| Accessible outside SDK | ✅                                                                                                                                                                               | ❌                                                                                                                                 |
 
 The **DiscreteAPI** is built for real-time analysis of emotions in audio data. Small snippets of audio are sent to the API to receive feedback in real-time of what emotions are detected based on tone of voice. This API operates on an approximate per-sentence basis, and audio must be cut to the appropriate size.
 
@@ -37,12 +38,12 @@ The **AsyncAPI** is built for emotion analysis of pre-recorded audio files. File
 
 The APIs expect mono audio in the .wav format. An ideal audio file is recorded at 44100 Hz (44.1 kHz), though sampling rates as low as 8 kHz can still be used with high accuracy. For custom use cases, microphone specifications can be customized based on audio environment, including optimizations for mono/stereo audio, single microphone applications, noisy environments, etc. 
 
-For the **DiscreteAPI**, there are two input data formatting options: 
+For the **DiscreteAPI**, there are two input data formatting options:
 
 - raw audio file `[multipart/form-data] `
 - processed audio file `[application/json]`
 
-Requests sent using the raw audio file will have reduced latencies. JSON input can only be sent from Python environments, as there are specific data processing requirements. These requirements are outlined in Quickstart and the API Reference. 
+Requests sent using the raw audio file will have reduced latencies. JSON input can only be sent from Python environments, as there are specific data processing requirements. These requirements are outlined in Quickstart and the API Reference.
 
 For the **AsyncAPI**, the only input data option is an audio file, in the .wav format.
 
@@ -65,7 +66,7 @@ Outputs are returned as JSONs in the following formats: 
 }
 ```
 
-The emotion returned in `main_emotion` is the highest confidence emotion returned from the model. Within `all_predictions`, each emotion is followed by its level of confidence. Some may use the top two highest confidence emotions to generate more nuanced states. We recommend dropping a `main_emotion` with confidence under 0.38, but that is at the user's discretion. 
+The emotion returned in `main_emotion` is the highest confidence emotion returned from the model. Within `all_predictions`, each emotion is followed by its level of confidence. Some may use the top two highest confidence emotions to generate more nuanced states. We recommend dropping a `main_emotion` with confidence under 0.38, but that is at the user's discretion.
 
 **AsyncAPI:**
 
@@ -102,5 +103,5 @@ The emotion returned in `main_emotion` is the highest confidence emotion returne
 The emotions returned in `emotions` are the highest confidence emotion returned from the model, alongside the timestamp and confidence. The number of values in `emotions` correlates directly to the length of the input file. We recommend dropping `emotions` with confidence under 0.38, but that is at the user's discretion.
 
 <Check>
-  Looking for a different interval of timestamps? The customizability of audio length is in beta and will be released soon. 
+  Looking for a different interval of timestamps? The customizability of audio length is in beta and will be released soon.
 </Check>

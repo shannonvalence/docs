@@ -20,17 +20,6 @@
     "display": "none"
   }
 },
-  
-  "openapi": {
-    "spec": "./openapi.json" 
-  },
-    "sidebar": [
-    {
-      "section": "Reference",
-      "pages": ["api-reference/sdk/SDK_flags"]
-    }
-  ],
-  
   "navigation": {
     "tabs": [
       {
@@ -72,8 +61,7 @@
             "group": "SDK Endpoints",
             "pages": [
               "api-reference/sdk/get_emotions",
-              "api-reference/sdk/upload_file",
-              "api-reference/sdk/SDK_flags"
+              "api-reference/sdk/upload_file"
             ]
           }
         ]
