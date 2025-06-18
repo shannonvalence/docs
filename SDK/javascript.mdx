@@ -37,6 +37,17 @@ try {
 }
 ```
 
+**Client Constructor: **
+
+```javascript
+client = new ValenceClient(
+    api_key=None,           // API key (or use VALENCE_API_KEY env var)
+    part_size=5*1024*1024,  // Size of each upload chunk for async audio
+    show_progress=True,     // Show progress bar for async uploads
+    max_threads=3          // Number of concurrent threads for async uploads
+)
+```
+
 **DiscreteAPI:**
 
 ```javascript
