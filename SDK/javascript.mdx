@@ -7,11 +7,11 @@ description: "Get our SDK up and running in your Javascript environment"
 
 As best practice, it is recommended to set up your environment variables. Create a `.env` file in your project root and add the following:
 
-```bash
-VALENCE_API_KEY=your_api_key                # Required: Your Valence API key
-VALENCE_SHORT_URL=https://discrete-api-url # Change only if custom link has been provided   
-VALENCE_LONG_URL=https://async-api-url   # Change only if custom link has been provided   
-VALENCE_LOG_LEVEL=info                      # Optional: debug, info, warn, error
+```bash [expandable]
+VALENCE_API_KEY=your_api_key                    # Required: Your Valence API key
+VALENCE_DISCRETE_URL=https://discrete-api-url   # Optional: Discrete audio endpoint
+VALENCE_ASYNC_URL=https://asynch-api-url        # Optional: Asynch audio endpoint  
+VALENCE_LOG_LEVEL=info                          # Optional: debug, info, warn, error
 ```
 
 Your Valence API Key is required, while while all other fields are optional.
@@ -21,13 +21,13 @@ Your Valence API Key is required, while while all other fields are optional.
 Install the package via `npm`.
 
 ```bash
-npm install valence-sdk
+npm install valenceai
 ```
 
 You can validate the package configuration using the following code:
 
 ```javascript
-import { validateConfig } from 'valence-sdk';
+import { validateConfig } from 'valenceai';
 
 try {
   validateConfig();
@@ -40,53 +40,58 @@ try {
 **DiscreteAPI:**
 
 ```javascript
-import { predictDiscreteAudioEmotion } from 'valence-sdk';
+import { ValenceClient } from 'valenceai';
 
 try {
-  const result = await predictDiscreteAudioEmotion('YOUR_FILE.wav');
-  console.log('Emotions detected:', result);
+  const client = new ValenceClient();
+  const result = await client.discrete.emotions('YOUR_FILE.wav');
+  console.log('Emotion detected:', result);
 } catch (error) {
   console.error('Error:', error.message);
 }
 ```
 
-**AsyncAPI:**
+**AsynchAPI:**
 
-```python
-import { uploadAsyncAudio, getEmotions } from 'valence-sdk';
+```javascript
+import { ValenceClient } from 'valenceai';
 
 try {
+  const client = new ValenceClient();
+  
   // Upload the audio file
-  const requestId = await uploadAsyncAudio('YOUR_FILE.wav');
+  const requestId = await client.asynch.upload('YOUR_FILE.wav');
   console.log('Upload complete. Request ID:', requestId);
   
-  // Poll for results
-  const emotions = await getEmotions(requestId);
+  // Get emotions from uploaded audio
+  const emotions = await client.asynch.emotions(requestId);
   console.log('Emotions detected:', emotions);
 } catch (error) {
   console.error('Error:', error.message);
 }
 ```
 
-**Advanced AsyncAPI Usage:**
+**Advanced AsynchAPI Usage:**
 
-This usage is only recommended if you receive errors during file uploads.
+This usage is only recommended if you receive errors during file uploads or require smaller upload segments during the upload of a large file.
 
 ```javascript
-import { uploadAsyncAudio, getEmotions } from 'valence-sdk';
+import { ValenceClient } from 'valenceai';
 
-// Custom upload with smaller parts and retries
-const requestId = await uploadAsyncAudio(
-  'YOUR_LARGE_FILE.wav',
+// Custom client configuration
+const client = new ValenceClient(
   2 * 1024 * 1024,  // 2MB parts
   5                  // 5 retry attempts
 );
 
+// Upload with custom configuration
+const requestId = await client.asynch.upload('huge_file.wav');
+
 // Custom polling with more attempts and shorter intervals
-const emotions = await getEmotions(
+const emotions = await client.asynch.emotions(
   requestId,
   50,    // 50 polling attempts
-  3000   // 3 second intervals
+  3      // 3 second intervals
 );
 ```
 

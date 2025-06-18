@@ -5,7 +5,7 @@ description: "After uploading your audio file via upload_file, get the results o
 
 ### Parameters
 
-- `request_id` (string): Request ID from `uploadAsyncAudio`
+- `request_id` (string): Request ID from `client.asynch.upload`
 - `max_tries` (number, optional): Maximum polling attempts (default: 20, range: 1-100)
 - `interval` (number, optional): Polling interval in milliseconds (default: 5000, range: 1000-60000)
 
@@ -14,3 +14,41 @@ description: "After uploading your audio file via upload_file, get the results o
 **Returns:** `results [string]` - Emotion prediction results
 
 **Throws:** Error if request_id is invalid or prediction times out
+
+### Usage
+
+<CodeGroup>
+
+```python Python
+from valenceai import ValenceClient
+
+client = ValenceClient(show_progress=True)
+
+# Upload the audio file
+request_id = client.asynch.upload("YOUR_FILE.wav")
+
+# Get emotions from uploaded audio
+result = client.asynch.emotions(request_id)
+print(result)
+```
+
+
+```javascript Javascript
+import { ValenceClient } from 'valence-sdk';
+
+try {
+  const client = new ValenceClient();
+  
+  // Upload the audio file
+  const requestId = await client.asynch.upload('YOUR_FILE.wav');
+  console.log('Upload complete. Request ID:', requestId);
+  
+  // Get emotions from uploaded audio
+  const emotions = await client.asynch.emotions(requestId);
+  console.log('Emotions detected:', emotions);
+} catch (error) {
+  console.error('Error:', error.message);
+}
+```
+
+</CodeGroup>

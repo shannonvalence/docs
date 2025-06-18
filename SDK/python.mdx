@@ -10,10 +10,10 @@ Python 3.8\+ is required to ensure proper functionality of all necessary librari
 As best practice, it is recommended to set up your environment variables as such:
 
 ```bash
-export VALENCE_API_KEY="YOUR_API_KEY" # Required
-VALENCE_SHORT_URL="https://discrete-api-url" # Change only if custom link has been provided   
-VALENCE_LONG_URL="https://async-api-url"   # Change only if custom link has been provided   
-export VALENCE_LOG_LEVEL="DEBUG"  # Optional: INFO, DEBUG, ERROR
+export VALENCE_API_KEY= "api_key_here"
+export VALENCE_DISCRETE_URL= "https://discrete-api-url" # Optional: custom Discrete audio endpoint
+export VALENCE_ASYNC_URL= "https://asynch-api-url" # Optional: custom Async audio endpoint
+export VALENCE_LOG_LEVEL= "DEBUG"  # Optional: INFO, DEBUG, ERROR
 ```
 
 Your Valence API Key is required, while while all other fields are optional.
@@ -23,29 +23,29 @@ Your Valence API Key is required, while while all other fields are optional.
 Install the package via `pip`.
 
 ```bash
-pip install valence-sdk
+pip install valenceai
 ```
 
 **DiscreteAPI:**
 
 ```python
-from valence_sdk import DiscreteAPI
+from valenceai import ValenceClient
 
-client = DiscreteAPI()
-result = client.predict_emotion("YOUR_FILE.wav")
+client = ValenceClient()
+result = client.discrete.emotions("YOUR_FILE.wav")
 print(result)
 ```
 
-**AsyncAPI:**
+**AsynchAPI:**
 
 ```python
-from valence_sdk import AsyncAPI
+from valenceai import ValenceClient
 
-client = AsyncAPI(show_progress=True)
-request_id = client.upload_file("YOUR_FILE.wav")
+client = ValenceClient(show_progress=True)
+request_id = client.asynch.upload("YOUR_FILE.wav")
 
-# Polling prediction
-result = client.get_emotions(request_id)
+# Get emotions from uploaded audio
+result = client.asynch.emotions(request_id)
 print(result)
 ```
 

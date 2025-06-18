@@ -14,3 +14,28 @@ description: "Send a file to Valence's system for emotional classification."
 **Returns:** `RequestID [string]` - Request ID for tracking the upload
 
 **Throws:** Error if file doesn't exist, API key missing, or upload fails
+
+### Usage
+
+<CodeGroup>
+
+```python Python
+from valenceai import ValenceClient
+
+client = ValenceClient(show_progress=True)
+request_id = client.asynch.upload("YOUR_FILE.wav")
+```
+
+
+```javascript Javascript
+import { ValenceClient } from 'valence-sdk';
+
+try {
+  const client = new ValenceClient();
+  
+  // Upload the audio file
+  const requestId = await client.asynch.upload('YOUR_FILE.wav');
+  console.log('Upload complete. Request ID:', requestId);
+```
+
+</CodeGroup>

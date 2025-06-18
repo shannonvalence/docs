@@ -55,14 +55,14 @@ Outputs are returned as JSONs in the following formats: 
 
 ```json
 {
-'main_emotion': 
-	'happy', 'confidence': 0.777777777,
-'all_predictions': {
-	'angry': 0.123456789, 
-	'happy': 0.777777777, 
-	'neutral': 0.234567890, 
-	'sad': 0.098765432
-	}
+  "main_emotion": "happy",
+  "confidence": 0.777777777,
+  "all_predictions": {
+    "angry": 0.123456789,
+    "happy": 0.777777777,
+    "neutral": 0.23456789,
+    "sad": 0.098765432
+  }
 }
 ```
 
@@ -72,31 +72,31 @@ The emotion returned in `main_emotion` is the highest confidence emotion returne
 
 ```json
 {
-	'request_id': '27a33189-bdd7-47ca-9817-abacfb7bdaf3', 
-	'status': 'completed', 
-	'emotions': [
-		{
-			't': '00:00', 
-			'emotion': 'neutral', 
-			'confidence': 0.827917230
-		},
-		{
-			't': '00:05', 
-			'emotion': 'neutral', 
-			'confidence': 0.719817432
-		},
-		{
-			't': '00:10', 
-			'emotion': 'happy', 
-			'confidence': 0.917309381
-		}
-		{
-			't': '00:15', 
-			'emotion': 'neutral', 
-			'confidence': 0.414097846
-		}
-		...
-	]
+  "request_id": "27a33189-bdd7-47ca-9817-abacfb7bdaf3",
+  "status": "completed",
+  "emotions": [
+    {
+      "t": "00:00",
+      "emotion": "neutral",
+      "confidence": 0.82791723
+    },
+    {
+      "t": "00:05",
+      "emotion": "neutral",
+      "confidence": 0.719817432
+    },
+    {
+      "t": "00:10",
+      "emotion": "happy",
+      "confidence": 0.917309381
+    },
+    {
+      "t": "00:15",
+      "emotion": "neutral",
+      "confidence": 0.414097846
+    }
+	"..."
+  ]
 }
 ```
 
