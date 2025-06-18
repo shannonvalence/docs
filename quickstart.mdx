@@ -1,6 +1,6 @@
 ---
 title: "Quickstart"
-description: "Get to testing the API quickly! This guide will walk you through direct usage of our DiscreteAPI for real-time emotion analysis and our AsyncAPI for emotion analysis of pre-recorded files."
+description: "Get to testing the API quickly! This guide will walk you through direct usage of our DiscreteAPI for real-time emotion analysis and our AsynchAPI for emotion analysis of pre-recorded files."
 ---
 
 ### Prerequisites
@@ -9,7 +9,7 @@ description: "Get to testing the API quickly! This guide will walk you through d
 - Endpoint URL for Pulse API
 - Python 3.7\+ OR JavaScript
 
-Valence provides Python and JavaScript SDKs, though you can also make direct HTTPS requests to the DiscreteAPI. The AsyncAPI can only be accessed through the SDK.
+Valence provides Python and JavaScript SDKs, though you can also make direct HTTPS requests to the DiscreteAPI. The AsynchAPI can only be accessed through the SDK.
 
 ### DiscreteAPI Examples
 
@@ -23,7 +23,7 @@ Below are two examples of direct usage of our DiscreteAPI. There are two data in
 import requests
 
 # Define the API endpoint and the API key
-API_LINK = 'api.getvalenceai.com'
+API_LINK = 'https://api.getvalenceai.com/emotionprediction'
 API_KEY = 'YOUR_API_KEY'
 
 # Define the file path to upload
@@ -55,7 +55,7 @@ const axios = require('axios');
 const fs = require('fs');
 
 // Define the API endpoint and the API key
-const API_LINK = 'https://api.getvalenceai.com';
+const API_LINK = 'https://api.getvalenceai.com/emotionprediction';
 const API_KEY = 'YOUR_API_KEY';
 
 // Define the file path to upload
@@ -85,7 +85,7 @@ axios.post(API_LINK, formData, { headers })
 
 ```bash cURL
 #!/bin/sh
-export API_LINK='api.getvalenceai.com'
+export API_LINK='https://api.getvalenceai.com/emotionprediction'
 export API_KEY='YOUR_API_KEY'
 curl -X POST "$API_LINK" \
      -H "x-api-key: $API_KEY" \
@@ -103,7 +103,7 @@ import librosa
 import json
 import numpy as np
 
-API_LINK = 'api.getvalenceai.com'
+API_LINK = 'https://api.getvalenceai.com/emotionprediction'
 API_KEY = 'YOUR_API_KEY'
 
 headers = {
@@ -124,34 +124,38 @@ print(response.json())
 
 All data sent to the DiscreteAPI is data-in-transit. It is not stored on Valence's systems.
 
-### AsyncAPI Examples
+### AsynchAPI Examples
 
-Below are examples of usage for our AsyncAPI. This API has to be used in conjunction with the SDK and requires direct file upload. 
+Below are examples of usage for our AsynchAPI. This API has to be used in conjunction with the SDK and requires direct file upload.
 
 <CodeGroup>
 
 ```python Python SDK
-from valence-sdk import AsyncAPI
+from valenceai import ValenceClient
 
-client = AsyncAPI(show_progress=True)
-request_id = client.upload_file("YOUR_FILE.wav")
+client = ValenceClient(show_progress=True)
 
-# Polling prediction
-result = client.get_emotions(request_id)
+# Upload the audio file
+request_id = client.asynch.upload("YOUR_FILE.wav")
+
+# Get emotions from uploaded audio
+result = client.asynch.emotions(request_id)
 print(result)
 ```
 
 
 ```javascript JavaScript SDK [expandable]
-import { uploadAsyncAudio, getEmotions } from 'valence-sdk';
+import { ValenceClient } from 'valenceai';
 
 try {
+  const client = new ValenceClient();
+  
   // Upload the audio file
-  const requestId = await uploadAsyncAudio('YOUR_FILE.wav');
+  const requestId = await client.asynch.upload('YOUR_FILE.wav');
   console.log('Upload complete. Request ID:', requestId);
   
-  // Poll for results
-  const emotions = await getEmotions(requestId);
+  // Get emotions from uploaded audio
+  const emotions = await client.asynch.emotions(requestId);
   console.log('Emotions detected:', emotions);
 } catch (error) {
   console.error('Error:', error.message);
@@ -160,4 +164,4 @@ try {
 
 </CodeGroup>
 
-All files sent to the AsyncAPI are briefly saved on Valence's systems while being processed. Our database is cleared every 24 hours. More information on data privacy can be found [here](https://www.getvalenceai.com/dpa).
+All files sent to the AsynchAPI are briefly saved on Valence's systems while being processed. Our database is cleared every 24 hours. More information on data privacy can be found [here](https://www.getvalenceai.com/dpa).
