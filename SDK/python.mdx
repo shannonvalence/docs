@@ -26,9 +26,11 @@ Install the package via `pip`.
 pip install valenceai
 ```
 
-**Client Constructor: **
+**Client Constructor:**
 
 ```python
+from valenceai import ValenceClient
+
 client = ValenceClient(
     api_key=None,           # API key (or use VALENCE_API_KEY env var)
     part_size=5*1024*1024,  # Size of each upload chunk for async audio

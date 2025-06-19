@@ -7,7 +7,7 @@ description: "Get our SDK up and running in your Javascript environment"
 
 As best practice, it is recommended to set up your environment variables. Create a `.env` file in your project root and add the following:
 
-```bash [expandable]
+```bash
 VALENCE_API_KEY=your_api_key                    # Required: Your Valence API key
 VALENCE_DISCRETE_URL=https://discrete-api-url   # Optional: Discrete audio endpoint
 VALENCE_ASYNC_URL=https://asynch-api-url        # Optional: Asynch audio endpoint  
@@ -37,9 +37,11 @@ try {
 }
 ```
 
-**Client Constructor: **
+**Client Constructor:**
 
 ```javascript
+import { ValenceClient } from 'valenceai';
+
 client = new ValenceClient(
     api_key=None,           // API key (or use VALENCE_API_KEY env var)
     part_size=5*1024*1024,  // Size of each upload chunk for async audio
