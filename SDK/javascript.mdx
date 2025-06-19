@@ -43,10 +43,9 @@ try {
 import { ValenceClient } from 'valenceai';
 
 client = new ValenceClient(
-    api_key=None,           // API key (or use VALENCE_API_KEY env var)
-    part_size=5*1024*1024,  // Size of each upload chunk for async audio
-    show_progress=True,     // Show progress bar for async uploads
-    max_threads=3          // Number of concurrent threads for async uploads
+    None,           // API key (or use VALENCE_API_KEY env var)
+    5*1024*1024,  // Size of each upload chunk for async audio
+    5              // Number of retry attempts
 )
 ```
 
