@@ -7,6 +7,8 @@ description: "This section outlines the required inputs and expected outputs of 
 
 All API endpoints are authenticated using API Keys. These can either be passed directly to the URL or they can be defined in an [environment file](/SDK/javascript).
 
+Passing Directly:
+
 ```json
 "headers": [
   {
@@ -14,3 +16,24 @@ All API endpoints are authenticated using API Keys. These can either be passed d
   }
 ]
 ```
+
+Environment Files:
+
+<CodeGroup>
+
+```bash Python
+export VALENCE_API_KEY= "api_key_here"
+export VALENCE_DISCRETE_URL= "https://discrete-api-url" # Optional: custom Discrete audio endpoint
+export VALENCE_ASYNC_URL= "https://asynch-api-url" # Optional: custom Asynch audio endpoint
+export VALENCE_LOG_LEVEL= "DEBUG"  # Optional: INFO, DEBUG, ERROR
+```
+
+
+```bash Javascript
+VALENCE_API_KEY= your_api_key                    # Required: Your Valence API key
+VALENCE_DISCRETE_URL= https://discrete-api-url   # Optional: Discrete audio endpoint
+VALENCE_ASYNCH_URL= https://asynch-api-url        # Optional: Asynch audio endpoint  
+VALENCE_LOG_LEVEL= info                          # Optional: debug, info, warn, error
+```
+
+</CodeGroup>
