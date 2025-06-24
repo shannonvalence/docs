@@ -1,11 +1,11 @@
 ---
-title: "Upload your file for emotion processing"
+title: "Upload file (Asynch)"
 description: "Send a file to Valence's system for emotional classification."
 ---
 
 ### Parameters
 
-- `file_path` or `filePath` (string): Path to the audio file
+- `file_path` (string): Path to the audio file
 - `partSize` (number, optional): Size of each part in bytes (default: 5MB, range: 1MB-100MB)
 - `maxRetries` (number, optional): Maximum retry attempts (default: 3)
 
@@ -15,6 +15,10 @@ description: "Send a file to Valence's system for emotional classification."
 
 **Throws:** Error if file doesn't exist, API key missing, or upload fails
 
+<Info>
+  ___API Keys are included in the client constructor. Find more information on the client constructor ___[___here___](/SDK/python)___.___
+</Info>
+
 ### Usage
 
 <CodeGroup>
@@ -23,6 +27,8 @@ description: "Send a file to Valence's system for emotional classification."
 from valenceai import ValenceClient
 
 client = ValenceClient(show_progress=True)
+
+# Upload the audio file
 request_id = client.asynch.upload("YOUR_FILE.wav")
 ```
 

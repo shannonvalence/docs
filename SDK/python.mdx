@@ -12,7 +12,7 @@ As best practice, it is recommended to set up your environment variables as such
 ```bash
 export VALENCE_API_KEY= "api_key_here"
 export VALENCE_DISCRETE_URL= "https://discrete-api-url" # Optional: custom Discrete audio endpoint
-export VALENCE_ASYNC_URL= "https://asynch-api-url" # Optional: custom Asynch audio endpoint
+export VALENCE_ASYNCH_URL= "https://asynch-api-url" # Optional: custom Asynch audio endpoint
 export VALENCE_LOG_LEVEL= "DEBUG"  # Optional: INFO, DEBUG, ERROR
 ```
 
@@ -33,9 +33,9 @@ from valenceai import ValenceClient
 
 client = ValenceClient(
     api_key=None,           # API key (or use VALENCE_API_KEY env var)
-    part_size=5*1024*1024,  # Size of each upload chunk for async audio
-    show_progress=True,     # Show progress bar for async uploads
-    max_threads=3          # Number of concurrent threads for async uploads
+    part_size=5*1024*1024,  # Size of each upload chunk for asynch audio
+    show_progress=True,     # Show progress bar for asynch uploads
+    max_threads=3          # Number of concurrent threads for asynch uploads
 )
 ```
 

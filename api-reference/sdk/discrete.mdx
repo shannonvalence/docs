@@ -1,0 +1,46 @@
+---
+title: "Get emotions (Discrete)"
+description: "For real-time emotion classification of short files, the file's singular classified emotion is returned, along with confidences of other emotions in the model."
+---
+
+### Parameters
+
+- `filePath` (string): Path to the audio file
+
+### Response
+
+**Returns:** `prediction [string]` - Emotion prediction results
+
+**Throws:** Error if file doesn't exist, API key missing, or request fails
+
+<Info>
+  ___API Keys are included in the client constructor. Find more information on the client constructor ___[___here.___](/SDK/python)
+</Info>
+
+### Usage
+
+<CodeGroup>
+
+```python Python
+from valenceai import ValenceClient
+
+client = ValenceClient()
+result = client.discrete.emotions("YOUR_FILE.wav")
+print(result)
+```
+
+
+```javascript JavaScript
+import { ValenceClient } from 'valenceai';
+
+try {
+  const client = new ValenceClient();
+  const result = await client.discrete.emotions('YOUR_FILE.wav');
+  console.log('Emotion detected:', result);
+} 
+catch (error) {
+  console.error('Error:', error.message);
+}
+```
+
+</CodeGroup>
