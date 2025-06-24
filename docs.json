@@ -60,6 +60,7 @@
           {
             "group": "SDK Endpoints",
             "pages": [
+              "api-reference/sdk/discrete",
               "api-reference/sdk/get_emotions",
               "api-reference/sdk/upload_file"
             ]
