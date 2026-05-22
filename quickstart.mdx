@@ -49,7 +49,6 @@ with open(file_path, 'rb') as file:
         print(f"Failed to upload file, {response.status_code}, {response.text}")
 ```
 
-
 ```javascript JavaScript [expandable]
 const axios = require('axios');
 const fs = require('fs');
@@ -81,7 +80,6 @@ axios.post(API_LINK, formData, { headers })
         console.error(`Failed to upload file, ${error.response.status}, ${error.response.data}`);
     });
 ```
-
 
 ```bash cURL
 #!/bin/sh
@@ -143,7 +141,6 @@ result = client.asynch.emotions(request_id)
 print(result)
 ```
 
-
 ```javascript JavaScript SDK
 import { ValenceClient } from 'valenceai';
 
@@ -164,4 +161,4 @@ try {
 
 </CodeGroup>
 
-All files sent to the AsynchAPI are briefly saved on Valence's systems while being processed. Our database is cleared every 24 hours. More information on data privacy can be found [here](https://www.getvalenceai.com/dpa).
+All files sent to the AsynchAPI are briefly saved on Valence's systems while being processed. Our database is cleared every 24 hours. More information on data privacy can be found [here](https://getvalenceai.com/legal/data-processing).
