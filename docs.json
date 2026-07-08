@@ -78,7 +78,7 @@
         },
         {
           "anchor": "Demo",
-          "href": "https://calendly.com/chloe-duckworth/demo",
+          "href": "https://calendly.com/akber-valence/valence-demo",
           "icon": "circle-video"
         },
         {
@@ -103,7 +103,7 @@
     "primary": {
       "type": "button",
       "label": "Request a Key",
-      "href": "https://calendly.com/chloe-duckworth/demo"
+      "href": "https://calendly.com/akber-valence/valence-demo"
     }
   },
   "footer": {
