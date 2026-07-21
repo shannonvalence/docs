@@ -23,7 +23,7 @@ Below are two examples of direct usage of our DiscreteAPI. There are two data in
 import requests
 
 # Define the API endpoint and the API key
-API_LINK = 'https://api.getvalenceai.com/emotionprediction'
+API_LINK = 'https://api.getvalenceai.com//v1/discrete/emotion'
 API_KEY = 'YOUR_API_KEY'
 
 # Define the file path to upload
@@ -54,7 +54,7 @@ const axios = require('axios');
 const fs = require('fs');
 
 // Define the API endpoint and the API key
-const API_LINK = 'https://api.getvalenceai.com/emotionprediction';
+const API_LINK = 'https://api.getvalenceai.com/v1/discrete/emotion';
 const API_KEY = 'YOUR_API_KEY';
 
 // Define the file path to upload
@@ -83,7 +83,7 @@ axios.post(API_LINK, formData, { headers })
 
 ```bash cURL
 #!/bin/sh
-export API_LINK='https://api.getvalenceai.com/emotionprediction'
+export API_LINK='https://api.getvalenceai.com/v1/discrete/emotion'
 export API_KEY='YOUR_API_KEY'
 curl -X POST "$API_LINK" \
      -H "x-api-key: $API_KEY" \
@@ -101,7 +101,7 @@ import librosa
 import json
 import numpy as np
 
-API_LINK = 'https://api.getvalenceai.com/emotionprediction'
+API_LINK = 'https://api.getvalenceai.com/v1/discrete/emotion'
 API_KEY = 'YOUR_API_KEY'
 
 headers = {
